@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Giriş Səhifəsi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>GİRİŞ</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="flash-message flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('login') }}">
+            <input 
+                type="text" 
+                name="email" 
+                placeholder="E-poçt ünvanınızı daxil edin" 
+                autocomplete="email" 
+                required
+            />
+
+            <input 
+                type="password" 
+                name="password" 
+                placeholder="Şifrənizi daxil edin" 
+                autocomplete="current-password" 
+                required
+            />
+
+            <label style="display: flex; align-items: center; margin-bottom: 28px; cursor: pointer;">
+                <input type="checkbox" name="remember" />
+                <span style="margin-left: 10px; font-weight: 500; color: #0f1a36;">Şifrəni yadda saxla</span>
+            </label>
+
+            <a href="#" style="display: block; margin-bottom: 35px; font-size: 0.95rem; color: #335AA2; text-decoration: none;">
+            <a href="Şifrəni unutdum?" style="display: block; margin-bottom: 35px; font-size: 0.95rem; color: #335AA2; text-decoration: none;">Şifrəni unutdum?</a>
+            </a>
+
+            <button type="submit">Daxil ol</button>
+        </form>
+
+        <div class="link" style="margin-top: 30px;">
+            Hesabın yoxdur? 
+            <a href="Qeydiyyatdan keç" >Qeydiyyatdan keç</a>
+        </div>
+    </div>
+</body>
+</html>
